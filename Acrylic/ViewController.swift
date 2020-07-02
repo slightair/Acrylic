@@ -1,6 +1,6 @@
 import Cocoa
 
-class ViewController: NSViewController {
+class AcrylicWebViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
