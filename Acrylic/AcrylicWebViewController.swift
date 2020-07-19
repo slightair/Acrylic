@@ -7,6 +7,11 @@ final class AcrylicWebViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let disableSelectionScript = WKUserScript(source: "document.documentElement.style.webkitUserSelect='none';", injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+
+        let configuration = webView.configuration
+        configuration.userContentController.addUserScript(disableSelectionScript)
+
         let request = URLRequest(url: URL(string: "https://w0sd0.csb.app/")!)
         webView.load(request)
         webView.navigationDelegate = self
