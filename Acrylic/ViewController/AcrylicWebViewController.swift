@@ -4,6 +4,11 @@ import WebKit
 final class AcrylicWebViewController: NSViewController {
     @IBOutlet weak var webView: WKWebView!
 
+    func openURL(_ url: URL) {
+        let request = URLRequest(url: url)
+        webView.load(request)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -12,8 +17,6 @@ final class AcrylicWebViewController: NSViewController {
         let configuration = webView.configuration
         configuration.userContentController.addUserScript(disableSelectionScript)
 
-        let request = URLRequest(url: URL(string: "https://w0sd0.csb.app/")!)
-        webView.load(request)
         webView.navigationDelegate = self
         webView.setValue(false, forKey: "drawsBackground")
     }

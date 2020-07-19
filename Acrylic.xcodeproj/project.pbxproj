@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		574497B624C4212000DD294E /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574497B524C4212000DD294E /* WindowController.swift */; };
 		576E373C24AE11A600A89646 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576E373B24AE11A600A89646 /* AppDelegate.swift */; };
 		576E373E24AE11A600A89646 /* AcrylicWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576E373D24AE11A600A89646 /* AcrylicWebViewController.swift */; };
 		576E374024AE11A700A89646 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 576E373F24AE11A700A89646 /* Assets.xcassets */; };
 		576E374324AE11A700A89646 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 576E374124AE11A700A89646 /* Main.storyboard */; };
+		5787026524C40BB70045376F /* URLListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787026424C40BB70045376F /* URLListViewController.swift */; };
+		5787026724C40EE10045376F /* URLItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787026624C40EE10045376F /* URLItem.swift */; };
+		5787026A24C41D440045376F /* URLItemInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5787026824C41D440045376F /* URLItemInputViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		574497B524C4212000DD294E /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		576E373824AE11A600A89646 /* Acrylic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acrylic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		576E373B24AE11A600A89646 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		576E373D24AE11A600A89646 /* AcrylicWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrylicWebViewController.swift; sourceTree = "<group>"; };
@@ -21,6 +26,9 @@
 		576E374224AE11A700A89646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		576E374424AE11A700A89646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		576E374524AE11A700A89646 /* Acrylic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Acrylic.entitlements; sourceTree = "<group>"; };
+		5787026424C40BB70045376F /* URLListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLListViewController.swift; sourceTree = "<group>"; };
+		5787026624C40EE10045376F /* URLItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLItem.swift; sourceTree = "<group>"; };
+		5787026824C41D440045376F /* URLItemInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLItemInputViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +61,26 @@
 		576E373A24AE11A600A89646 /* Acrylic */ = {
 			isa = PBXGroup;
 			children = (
+				5787026C24C41D600045376F /* ViewController */,
 				576E373B24AE11A600A89646 /* AppDelegate.swift */,
-				576E373D24AE11A600A89646 /* AcrylicWebViewController.swift */,
+				5787026624C40EE10045376F /* URLItem.swift */,
 				576E373F24AE11A700A89646 /* Assets.xcassets */,
 				576E374124AE11A700A89646 /* Main.storyboard */,
 				576E374424AE11A700A89646 /* Info.plist */,
 				576E374524AE11A700A89646 /* Acrylic.entitlements */,
+				574497B524C4212000DD294E /* WindowController.swift */,
 			);
 			path = Acrylic;
+			sourceTree = "<group>";
+		};
+		5787026C24C41D600045376F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				576E373D24AE11A600A89646 /* AcrylicWebViewController.swift */,
+				5787026424C40BB70045376F /* URLListViewController.swift */,
+				5787026824C41D440045376F /* URLItemInputViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +154,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				576E373E24AE11A600A89646 /* AcrylicWebViewController.swift in Sources */,
+				574497B624C4212000DD294E /* WindowController.swift in Sources */,
+				5787026524C40BB70045376F /* URLListViewController.swift in Sources */,
+				5787026724C40EE10045376F /* URLItem.swift in Sources */,
 				576E373C24AE11A600A89646 /* AppDelegate.swift in Sources */,
+				5787026A24C41D440045376F /* URLItemInputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
