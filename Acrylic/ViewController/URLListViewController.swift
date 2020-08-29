@@ -22,7 +22,13 @@ class URLListViewController: NSViewController {
 
         loadItems()
 
-        urlListView.doubleAction = #selector(didItemDoubleClicked)
+        urlListView.doubleAction = #selector(openURLItem(_:))
+
+        let menu = NSMenu()
+        menu.addItem(withTitle: "Open", action: #selector(openURLItem(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: "Edit", action: #selector(editURLItem(_:)), keyEquivalent: "")
+        menu.addItem(withTitle: "Delete", action: #selector(deleteURLItem(_:)), keyEquivalent: "")
+        urlListView.menu = menu
     }
 
     func setUp() {
@@ -37,17 +43,43 @@ class URLListViewController: NSViewController {
         presentAsSheet(viewController)
     }
 
-    @objc func didItemDoubleClicked() {
-        if urlListView.clickedRow != -1 {
-            let item = items[urlListView.clickedRow]
-
-            guard let viewController: AcrylicWebViewController = storyboard?.instantiateController(identifier: NSStoryboard.SceneIdentifier("AcrylicWebView")) else {
-                fatalError("Could not instantiate AcrylicWebViewController")
-            }
-
-            presentAsModalWindow(viewController)
-            viewController.openURL(item.url)
+    @objc func openURLItem(_ sender: Any?) {
+        if urlListView.clickedRow == -1 {
+            return
         }
+
+        let item = items[urlListView.clickedRow]
+
+        guard let viewController: AcrylicWebViewController = storyboard?.instantiateController(identifier: NSStoryboard.SceneIdentifier("AcrylicWebView")) else {
+            fatalError("Could not instantiate AcrylicWebViewController")
+        }
+
+        presentAsModalWindow(viewController)
+        viewController.openURL(item.url)
+    }
+
+    @objc func editURLItem(_ sender: Any?) {
+        if urlListView.clickedRow == -1 {
+            return
+        }
+
+        let item = items[urlListView.clickedRow]
+        guard let viewController: URLItemInputViewController = storyboard?.instantiateController(identifier: NSStoryboard.SceneIdentifier("URLItemInputView")) else {
+            fatalError("Could not instantiate URLItemInputViewController")
+        }
+        viewController.item = item
+        viewController.delegate = self
+        presentAsSheet(viewController)
+    }
+
+    @objc func deleteURLItem(_ sender: Any?) {
+        if urlListView.clickedRow == -1 {
+            return
+        }
+
+        items.remove(at: urlListView.clickedRow)
+        synchronizeItems()
+        urlListView.reloadData()
     }
 
     @objc func keyValueStoreDidChange(notification: Notification) {
@@ -117,7 +149,11 @@ extension URLListViewController: NSTableViewDataSource, NSTableViewDelegate {
 
 extension URLListViewController: URLItemInputViewControllerDelegate {
     func urlItemInputViewController(viewController: URLItemInputViewController, didRequestAddURLItem item: URLItem) {
-        items.append(item)
+        if let editItemIndex = items.firstIndex(where: { $0.id == item.id }) {
+            items[editItemIndex] = item
+        } else {
+            items.append(item)
+        }
         synchronizeItems()
         urlListView.reloadData()
     }

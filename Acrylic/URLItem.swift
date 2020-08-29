@@ -3,10 +3,12 @@ import Foundation
 final class URLItem: NSObject, NSSecureCoding {
     static var supportsSecureCoding = true
 
+    let id: UUID
     let title: String
     let url: URL
 
-    init(title: String, url: URL) {
+    init(id: UUID = UUID(), title: String, url: URL) {
+        self.id = id
         self.title = title
         self.url = url
     }
@@ -19,6 +21,7 @@ final class URLItem: NSObject, NSSecureCoding {
             return nil
         }
 
+        self.id = UUID()
         self.title = title as String
         self.url = url as URL
     }

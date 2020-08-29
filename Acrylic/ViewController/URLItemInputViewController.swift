@@ -8,10 +8,16 @@ class URLItemInputViewController: NSViewController {
     @IBOutlet weak var titleTextField: NSTextField!
     @IBOutlet weak var urlTextField: NSTextField!
 
+    var item: URLItem?
     weak var delegate: URLItemInputViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let item = item {
+            titleTextField.stringValue = item.title
+            urlTextField.stringValue = item.url.absoluteString
+        }
     }
 
     @IBAction func addURL(_ sender: Any) {
@@ -24,7 +30,12 @@ class URLItemInputViewController: NSViewController {
             return
         }
 
-        let urlItem = URLItem(title: title, url: url)
+        let urlItem: URLItem
+        if let editURLItem = item {
+            urlItem = URLItem(id: editURLItem.id, title: title, url: url)
+        } else {
+            urlItem = URLItem(title: title, url: url)
+        }
         delegate?.urlItemInputViewController(viewController: self, didRequestAddURLItem: urlItem)
 
         self.presentingViewController?.dismiss(self)
