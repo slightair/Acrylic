@@ -54,7 +54,11 @@ class URLListViewController: NSViewController {
             fatalError("Could not instantiate AcrylicWebViewController")
         }
 
-        presentAsModalWindow(viewController)
+        let window = NSWindow(contentViewController: viewController)
+        window.makeKeyAndOrderFront(self)
+        let windowController = NSWindowController(window: window)
+        windowController.showWindow(self)
+
         viewController.openURL(item.url)
     }
 
