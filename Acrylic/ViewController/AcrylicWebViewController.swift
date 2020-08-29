@@ -40,6 +40,7 @@ final class AcrylicWebViewController: NSViewController {
 
 extension AcrylicWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        view.window?.title = webView.title ?? "Acrylic WebView"
         print("done")
     }
 
